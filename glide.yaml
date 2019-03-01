@@ -1,0 +1,8 @@
+package: github.com/ezuhl/go-surveymonkey
+import:
+- package: github.com/google/go-querystring
+  version: ^1.0.0
+  env: ""
+  subpackages:
+  - query
+env: ""

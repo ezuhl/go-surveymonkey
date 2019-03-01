@@ -5,9 +5,6 @@ package response
  * file 'LICENSE.txt', which is part of this source code package.
  */
 
-
-
-
 type SurveyPage struct {
 	PerPage int `json:"per_page"`
 	Total   int `json:"total"`

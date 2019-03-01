@@ -7,15 +7,9 @@ import "github.com/google/go-querystring/query"
  * file 'LICENSE.txt', which is part of this source code package.
  */
 
-
-
-
-
-
 type PageRequest struct {
-	Page int `url:"page,omitempty"`
+	Page    int `url:"page,omitempty"`
 	PerPage int `url:"per_page,omitempty"`
-
 }
 
 func (u PageRequest) String() string {

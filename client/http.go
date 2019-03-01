@@ -1,16 +1,16 @@
 package client
 
 import (
-	"net/http"
-	"fmt"
-	"io"
-	"encoding/json"
 	"bytes"
 	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"io/ioutil"
 	"log"
+	"net/http"
 	"net/url"
 	"time"
-	"io/ioutil"
 )
 
 /*
@@ -18,22 +18,16 @@ import (
  * file 'LICENSE.txt', which is part of this source code package.
  */
 
-
-
-
 type SMHttp struct {
-	baseUrl *url.URL
-	apiKey string
-	env string
-	timeOut time.Duration
-	client 	 *http.Client
+	baseUrl   *url.URL
+	apiKey    string
+	env       string
+	timeOut   time.Duration
+	client    *http.Client
 	userAgent string
-
-
 }
 
-
-func NewSMHttp (smUrl, key, env string, timeOut time.Duration) *SMHttp{
+func NewSMHttp(smUrl, key, env string, timeOut time.Duration) *SMHttp {
 	e := &SMHttp{}
 	if len(key) == 0 {
 		log.Fatalf("no api key")
@@ -53,17 +47,15 @@ func NewSMHttp (smUrl, key, env string, timeOut time.Duration) *SMHttp{
 	return e
 }
 
-
-
 func (sm *SMHttp) NewRequest(method, path string, body interface{}) (*http.Request, error) {
 	//rel := &url.URL{Path: path}
 	//u := c.BaseURL.ResolveReference(rel)
 
-	u := fmt.Sprintf("%s/%s", sm.baseUrl,path)
+	u := fmt.Sprintf("%s/%s", sm.baseUrl, path)
 
 	var buf io.ReadWriter
 	if body != nil {
-		jsonBody,err := json.Marshal(body)
+		jsonBody, err := json.Marshal(body)
 
 		if err != nil {
 			return nil, err
@@ -78,15 +70,14 @@ func (sm *SMHttp) NewRequest(method, path string, body interface{}) (*http.Reque
 	}
 
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", fmt.Sprintf("bearer %s",sm.apiKey))
+	req.Header.Set("Authorization", fmt.Sprintf("bearer %s", sm.apiKey))
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", "Go SurveyMonkey Client")
 
 	return req, nil
 }
 
-
-func (sm *SMHttp)  Do(req *http.Request, v interface{}) (*http.Response, error) {
+func (sm *SMHttp) Do(req *http.Request, v interface{}) (*http.Response, error) {
 
 	ctx, _ := context.WithTimeout(context.TODO(), sm.timeOut)
 	req = req.WithContext(ctx)
@@ -109,7 +100,6 @@ func (sm *SMHttp)  Do(req *http.Request, v interface{}) (*http.Response, error) 
 			return resp, err
 		}
 	}
-
 
 	return resp, err
 }

@@ -6,32 +6,28 @@ package request
  */
 
 type SurveyQuestion struct {
-	Heading []*SurveyHeading `json:"headings"`
-	Position int `json:"position,omitempty"`
-	Family string `json:"family"`
-	Subtype string `json:"subtype"`
-	Sorting *Sorting `json:"sorting,omitempty"`
-	Required *Required `json:"required,omitempty"`
-	Validation *Validation `json:"validation,omitempty"`
-	ForcedRanking bool `json:"forced_ranking,omitempty"`
-	QuizOptions  *QuizOptions `json:"quiz_options,omitempty"`
-	Answers AnswerTypeInterface  `json:"answers"`
-
+	Heading       []*SurveyHeading    `json:"headings"`
+	Position      int                 `json:"position,omitempty"`
+	Family        string              `json:"family"`
+	Subtype       string              `json:"subtype"`
+	Sorting       *Sorting            `json:"sorting,omitempty"`
+	Required      *Required           `json:"required,omitempty"`
+	Validation    *Validation         `json:"validation,omitempty"`
+	ForcedRanking bool                `json:"forced_ranking,omitempty"`
+	QuizOptions   *QuizOptions        `json:"quiz_options,omitempty"`
+	Answers       AnswerTypeInterface `json:"answers"`
 }
 
 type SurveyHeading struct {
-	Heading string `json:"heading"`
-	Description string `json:"description,omitempty"`
-	Image *Image `json:"image,omitempty"`
+	Heading          string            `json:"heading"`
+	Description      string            `json:"description,omitempty"`
+	Image            *Image            `json:"image,omitempty"`
 	RandomAssignment *RandomAssignment `json:"random_assignment,omitempty"`
-
 }
 
-
-
 type RandomAssignment struct {
-	Percent int `json:"percent"`
-	Position int `json:"position"`
+	Percent      int    `json:"percent"`
+	Position     int    `json:"position"`
 	VariableName string `json:"variable_name"`
 }
 
@@ -39,49 +35,38 @@ type Image struct {
 	Url int `json:"url"`
 }
 
-
 type Sorting struct {
-	Type string `json:"type"` //default, textasc, textdesc, resp_count_asc, resp_count_desc, random, flip
-	IgnoreLast bool `json:"ignore_last"`
-
-
+	Type       string `json:"type"` //default, textasc, textdesc, resp_count_asc, resp_count_desc, random, flip
+	IgnoreLast bool   `json:"ignore_last"`
 }
 
 type Required struct {
-	Text string `json:"text"`
-	Type string  `json:"type"` //all , at_least, at_most, exactly, or range
+	Text   string `json:"text"`
+	Type   string `json:"type"` //all , at_least, at_most, exactly, or range
 	Amount string `json:"amount"`
-
 }
 
 type Validation struct {
-	Type string `json:"type"` //any, integer, decimal, date_us, date_intl, regex, email, or text_length
-	Text string `json:"text"`
-	Min string `json:"min"`
-	Max string `json:"max"`
-	Sum int `json:"sum"`
+	Type    string `json:"type"` //any, integer, decimal, date_us, date_intl, regex, email, or text_length
+	Text    string `json:"text"`
+	Min     string `json:"min"`
+	Max     string `json:"max"`
+	Sum     int    `json:"sum"`
 	SumText string `json:"sum_text"`
 }
 
-
 type QuizOptions struct {
-	ScoringEnabled bool `json:"scoring_enabled"`
-	FeedBack *FeedBack `json:"feedback"`
-
-
+	ScoringEnabled bool      `json:"scoring_enabled"`
+	FeedBack       *FeedBack `json:"feedback"`
 }
-
 
 type FeedBack struct {
-	CorrectText string `json:"correct_text"`
+	CorrectText   string `json:"correct_text"`
 	IncorrectText string `json:"incorrect_text"`
-	PartialText string `json:"partial_text"`
+	PartialText   string `json:"partial_text"`
 }
 
-
 type AnswerTypeInterface interface {
-
-
 }
 
 type AnswerSinglechoice struct {
@@ -104,7 +89,6 @@ type AnswerSinglechoice struct {
 	} `json:"answers"`
 }
 
-
 type AnswerMultipleChoice struct {
 	AnswerTypeInterface
 	Headings []struct {
@@ -119,7 +103,6 @@ type AnswerMultipleChoice struct {
 		} `json:"choices"`
 	} `json:"answers"`
 }
-
 
 type AnswerImageChoice struct {
 	AnswerTypeInterface
@@ -142,7 +125,6 @@ type AnswerImageChoice struct {
 	} `json:"answers"`
 }
 
-
 type AnswerMatrixSingle struct {
 	AnswerTypeInterface
 	Headings []struct {
@@ -161,7 +143,6 @@ type AnswerMatrixSingle struct {
 		} `json:"choices"`
 	} `json:"answers"`
 }
-
 
 type AnswerMatrixRating struct {
 	AnswerTypeInterface
@@ -183,7 +164,6 @@ type AnswerMatrixRating struct {
 	} `json:"answers"`
 }
 
-
 type AnswerMatrixRanking struct {
 	AnswerTypeInterface
 	Headings []struct {
@@ -198,7 +178,6 @@ type AnswerMatrixRanking struct {
 		} `json:"rows"`
 	} `json:"answers"`
 }
-
 
 type AnswerMatrixMenu struct {
 	AnswerTypeInterface
@@ -223,7 +202,6 @@ type AnswerMatrixMenu struct {
 	} `json:"answers"`
 }
 
-
 type AnswerOpenEnded struct {
 	AnswerTypeInterface
 	Headings []struct {
@@ -233,7 +211,6 @@ type AnswerOpenEnded struct {
 	Family   string `json:"family"`
 	Subtype  string `json:"subtype"`
 }
-
 
 type AnswerOpenEndedMulti struct {
 	AnswerTypeInterface
@@ -249,7 +226,6 @@ type AnswerOpenEndedMulti struct {
 		} `json:"rows"`
 	} `json:"answers"`
 }
-
 
 type AnswerOpenEndedNumerical struct {
 	AnswerTypeInterface
@@ -272,7 +248,6 @@ type AnswerOpenEndedNumerical struct {
 	} `json:"validation"`
 }
 
-
 type AnswerDemographic struct {
 	AnswerTypeInterface
 	Headings []struct {
@@ -292,7 +267,6 @@ type AnswerDemographic struct {
 	} `json:"answers"`
 }
 
-
 type AnswerDateTime struct {
 	AnswerTypeInterface
 	Headings []struct {
@@ -310,7 +284,6 @@ type AnswerDateTime struct {
 	} `json:"answers"`
 }
 
-
 type AnswerPresentation struct {
 	AnswerTypeInterface
 	Headings []struct {
@@ -324,7 +297,6 @@ type AnswerPresentation struct {
 	Subtype  string `json:"subtype"`
 }
 
-
 type AnswerFileUpload struct {
 	AnswerTypeInterface
 	Headings []struct {
@@ -337,8 +309,6 @@ type AnswerFileUpload struct {
 		DisplayType string `json:"display_type"`
 	} `json:"display_options"`
 }
-
-
 
 type AnswerSlider struct {
 	AnswerTypeInterface
@@ -379,8 +349,6 @@ type AnswerSliderComplex struct {
 	} `json:"validation"`
 }
 
-
-
 type AnswerEmoji struct {
 	AnswerTypeInterface
 	Headings []struct {
@@ -407,7 +375,6 @@ type AnswerEmoji struct {
 	} `json:"answers"`
 }
 
-
 type AnswerQuizQuestions struct {
 	AnswerTypeInterface
 	Headings []struct {
@@ -432,7 +399,6 @@ type AnswerQuizQuestions struct {
 		} `json:"feedback"`
 	} `json:"quiz_options"`
 }
-
 
 type AnswerQuestionsBankQuestions struct {
 	AnswerTypeInterface

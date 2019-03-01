@@ -7,16 +7,10 @@ import "github.com/google/go-querystring/query"
  * file 'LICENSE.txt', which is part of this source code package.
  */
 
-
-
-
-
-
 type CategoryRequest struct {
-	Page int `url:"page,omitempty"`
-	PerPage int `url:"per_page,omitempty"`
+	Page     int    `url:"page,omitempty"`
+	PerPage  int    `url:"per_page,omitempty"`
 	Language string `url:"language,omitempty"`
-
 }
 
 func (u CategoryRequest) String() string {

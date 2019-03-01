@@ -5,8 +5,6 @@ package response
  * file 'LICENSE.txt', which is part of this source code package.
  */
 
-
-
 type Template struct {
 	Page    int `json:"page"`
 	PerPage int `json:"per_page"`

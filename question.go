@@ -1,4 +1,4 @@
-package surveymonkey
+package go_surveymonkey
 
 import (
 	"fmt"

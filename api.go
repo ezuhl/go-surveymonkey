@@ -1,4 +1,4 @@
-package surveymonkey
+package go_surveymonkey
 
 import (
 	"github.com/ezuhl/go-surveymonkey/client"
@@ -12,7 +12,6 @@ import (
 
 const (
 	apiTimeOut = time.Second * 5
-	cacheTime  = time.Minute * 15
 )
 
 type SMApi struct {
@@ -23,7 +22,6 @@ type SMApi struct {
 func NewSMAPI(apiUrl, apiKey, env string) *SMApi {
 
 	s := &SMApi{}
-	s.cacheTime = cacheTime
 	s.smHttp = client.NewSMHttp(apiUrl, apiKey, env, apiTimeOut)
 
 	return s

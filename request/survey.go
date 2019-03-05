@@ -14,7 +14,7 @@ type SurveyTitle struct {
 
 type SurveyRequest struct {
 	Title           string `url:"title,omitempty"`
-	Page            string `url:"page,omitempty"`
+	Page            int    `url:"page,omitempty"`
 	PerPage         int    `url:"per_page,omitempty"`
 	SortBy          string `url:"sort_by,omitempty"`
 	SortOrder       string `url:"sort_order,omitempty"`

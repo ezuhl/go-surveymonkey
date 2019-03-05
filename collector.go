@@ -2,7 +2,6 @@ package go_surveymonkey
 
 import (
 	"fmt"
-	"github.com/ezuhl/go-surveymonkey/request"
 	"github.com/ezuhl/go-surveymonkey/response"
 )
 
@@ -12,18 +11,18 @@ import (
  */
 
 const (
-	templatePath = "survey_templates"
+	surveyCollectorPath = "collectors/%s"
 )
 
-func (sm *SMApi) GetSurveyTemplate(params *request.TemplatesRequest) ([]*response.Template, error) {
+func (sm *SMApi) GetCollector(id string) (*response.CollectorResponse, error) {
 
-	req, err := sm.smHttp.NewRequest("GET", fmt.Sprintf("%s?%s", templatePath, params), nil)
+	req, err := sm.smHttp.NewRequest("GET", fmt.Sprintf(surveyCollectorPath, id), nil)
 
 	if err != nil {
 		return nil, err
 	}
 
-	models := make([]*response.Template, 0)
+	models := &response.CollectorResponse{}
 	resp, err := sm.smHttp.Do(req, &models)
 	if err != nil {
 		return nil, err

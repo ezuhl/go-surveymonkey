@@ -12,18 +12,19 @@ import (
  */
 
 const (
-	templatePath = "survey_templates"
+	surveyCollectorsPath = "surveys/%s/collectors"
 )
 
-func (sm *SMApi) GetSurveyTemplate(params *request.TemplatesRequest) ([]*response.Template, error) {
+func (sm *SMApi) GetSurveyCollectors(id string, params request.CollectorRequest) (*response.CollectorsResponse, error) {
 
-	req, err := sm.smHttp.NewRequest("GET", fmt.Sprintf("%s?%s", templatePath, params), nil)
+	endpoint := fmt.Sprintf(surveyCollectorsPath, id)
+	req, err := sm.smHttp.NewRequest("GET", fmt.Sprintf("%s?%s", endpoint, params), nil)
 
 	if err != nil {
 		return nil, err
 	}
 
-	models := make([]*response.Template, 0)
+	models := &response.CollectorsResponse{}
 	resp, err := sm.smHttp.Do(req, &models)
 	if err != nil {
 		return nil, err

@@ -29,6 +29,7 @@ type CollectorResponse struct {
 	ID                      string      `json:"id"`
 	Type                    string      `json:"type"`
 	Name                    string      `json:"name"`
+	Hash                    string      `json:"hash"`
 	ThankYouMessage         string      `json:"thank_you_message"`
 	DisqualificationMessage string      `json:"disqualification_message"`
 	CloseDate               time.Time   `json:"close_date"`
